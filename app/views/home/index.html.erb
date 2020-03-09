@@ -1,0 +1,72 @@
+<% if  user_signed_in? %>
+  <section class="main-content-w3layouts-agileits">
+    <div class="col-md-12">
+      <h3 class="tittle" style="text-align: center">Welcome</h3>
+    </div>
+  </section>
+<% else %>
+  <section class="main-content-w3layouts-agileits">
+    <div class="container">
+      <!---728x90--->
+      <div class="row" style="padding-top: 10px; border-bottom: 1px solid #e2dfdf">
+        <div class="col-md-4">
+          <h3 class="tittle">Articles</h3>
+          <%= page_entries_info @articles %>
+        </div>
+        <div class="col-md-8" style="display: flex; flex-direction: row-reverse;">
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Filter</label>
+                <input type="text" class="form-control" id="inlineFormInput" value="<%= params && params[:q] && params[:q][:title_cont] %>"name="q[title_cont]" placeholder="Title contain..">
+              </div>
+              <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Category</label>
+                <%= select_tag "category", options_from_collection_for_select(category_options, "id", "name", (params && params[:q] && params[:q][:category_id_eq])), include_blank: true, name: "q[category_id_eq]", class: "form-control" %>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Apply</button>
+                <a href="/" class="btn btn-default">Clear</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!---728x90--->
+      <div class="inner-sec">
+        <!--left-->
+        <div class="left-blog-info-w3layouts-agileits text-left">
+          <div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+            <% if @articles.present? %>
+              <% @articles.each do |article| %>
+                <div class="col-md-4" style="padding-bottom: 15px">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title" style="height: 20px; overflow: auto"><%= article.title %></h5>
+                      <% if article.user.name.present? %>
+                        <p class="card-text">Posted by <span class="user-name"><%= article.user.name %></span> on <span class="article-created-at"><%= article.created_at.strftime("%b %d, %Y") %></span></p>
+                      <% else %>
+                        <p class="card-text"><span class="article-created-at"><%= article.created_at.strftime("%b %d, %Y") %></span></p>
+                      <% end %>
+                      <p class="card-text" style="height: 250px; overflow: auto"><%= article.description %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="col-md-12" style="text-align: center;">No Articles Found.</div>
+            <% end  %>
+          </div>
+          <!--//left-->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="main-content-w3layouts-agileits">
+    <div class="container">
+      <%= paginate @articles %>
+    </div>
+  </section>
+
+  <% end %>

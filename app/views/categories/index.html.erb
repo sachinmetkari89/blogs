@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6">
+    <h4 class="listing-title">Categories</h4>
+    <%= page_entries_info @categories %>
+  </div>
+    <div class="col-md-6 new-btn">
+     <a href="/categories/new" class="btn btn-sm btn-primary">NEW</a>
+  </div>
+</div>
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="d-flex">
+        <th class="col-md-1">Sr. No</th>
+        <th class="col-md-9">Name</th>
+        <th class="col-md-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @categories.count > 0 %>
+      <% @categories.each_with_index do |category, index| %>
+        <tr class="d-flex">
+          <td class="col-md-1"><%= index + 1 %></td>
+          <td class="col-md-9"><%= category.name %></td>
+          <td class="col-md-2">
+            <%= link_to "Edit", edit_category_path(category), method: :get, class: "delete-btn btn btn-sm btn-info" %>
+            <%= link_to "Delete", category_path(category), method: :delete, class: "delete-btn btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><td colspan="5" style="text-align: center">No Categories Found.</td></tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="article-pagination">
+  <%= paginate @categories %>
+</div>

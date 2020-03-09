@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-6">
+    <h4 class="listing-title">Articles</h4>
+    <%= page_entries_info @articles %>
+  </div>
+    <div class="col-md-6 new-btn">
+     <a href="/articles/new" class="btn btn-sm btn-primary">NEW</a>
+  </div>
+</div>
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="d-flex">
+        <th class="col-md-1">Sr. No</th>
+        <th class="col-md-2">Title</th>
+        <th class="col-md-2">Category</th>
+        <th class="col-md-4">Description</th>
+        <th class="col-md-1">Status</th>
+        <th class="col-md-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @articles.count > 0 %>
+      <% @articles.each_with_index do |article, index| %>
+        <tr class="d-flex">
+          <td class="col-md-1"><%= index + 1 %></td>
+          <td class="col-md-2"><%= article.title %></td>
+          <td class="col-md-2"><%= article.category.try(:name) %></td>
+          <td class="col-md-4 article-description"><%= article.description %></td>
+          <td class="col-md-1 article-state-<%= article.id %>"><%= article_with_label(article.state) %></td>
+          <td class="col-md-2">
+            <%= link_to "Edit", edit_article_path(article), method: :get, class: "delete-btn btn btn-sm btn-info" %>
+            <%= link_to "Delete", article_path(article), method: :delete, class: "delete-btn btn btn-sm btn-danger" %>
+            <%= select_tag "state", options_for_select(article_state_options, article.state), include_blank: true, name: "article[state]", class: "article-state", data: { "article-id": article.id } %>
+           </td>
+        </tr>
+        <% end %>
+    <% else %>
+        <tr><td colspan="6" style="text-align: center">No Articles Found.</td></tr>
+    <% end%>
+    </tbody>
+  </table>
+</div>
+
+<div class="article-pagination">
+  <%= paginate @articles %>
+</div>
+
+
+
+
+

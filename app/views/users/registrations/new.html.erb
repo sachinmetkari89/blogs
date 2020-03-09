@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <h2>Sign up</h2>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group col-md-6">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= f.label :mobile %>
+    <%= f.number_field :mobile, autofocus: true, autocomplete: "mobile", class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="actions col-md-6">
+    <a href="/" class="btn btn-sm btn-default">Cancel</a>
+    <%= f.submit "Sign up", class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>

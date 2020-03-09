@@ -1,0 +1,87 @@
+.form-group.error {
+  input {
+    border-color: red;
+  }
+  span.error {
+    color: red;
+  }
+}
+
+body {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: proximanova,Verdana,sans-serif;
+  background-color: #f8f9fa;
+}
+
+.bg-light {
+  background-color: #26aff1 !important
+}
+
+.nav-item .nav-link {
+  color: #f1ecec !important;
+}
+
+.nav-item .nav-link:hover {
+  color: #ffffff !important;
+}
+
+.new-btn {
+  text-align: right;
+  height: 60px;
+  line-height: 60px;
+}
+
+.card-text {
+  .user-name {
+    font-weight: 500;
+  }
+  .article-created-at {
+    font-weight: 500;
+  }
+}
+
+.btn-default {
+  color: #ffffff;
+  background-color: #c5c4c4;
+}
+
+.btn-default:hover {
+  color: #ffffff;
+  background-color: #b5b3b3;
+}
+
+
+.login-links {
+  display: flex;
+  flex-direction: row-reverse !important; 
+}
+
+.main-container {
+  margin-top: 70px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

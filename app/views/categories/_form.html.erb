@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <h2><%= (action_name == "new") ? "New" : "Edit" %> Category</h2>
+</div>
+<%= form_for @category do |f| %>
+  <div class="form-group col-md-6 <%= flash[:errors].present? ? 'error' : '' %>">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: "form-control" %>
+    <span class='error'><%= flash[:errors] && flash[:errors].join(", ") %></span>
+  </div>
+  <div class="actions col-md-6">
+    <%= f.submit "Submit", class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>
+

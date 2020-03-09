@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <h2><%= (action_name == "new") ? "New" : "Edit" %> Article</h2>
+</div>
+
+<%= form_for @article do |f| %>
+
+  <div class="form-group col-md-6 <%= flash[:errors].present? ? 'error' : '' %>">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true, autocomplete: "title", class: "form-control" %>
+    <span class='error'><%= field_flash_messages(flash[:errors], 'title') %></span>
+  </div>
+
+  <div class="form-group col-md-6 <%= flash[:errors].present? ? 'error' : '' %>">
+    <%= f.label :category %><br />
+    <%= select_tag "category", options_from_collection_for_select(category_options, "id", "name", @article.category_id), include_blank: true, name: "article[category_id]", class: "form-control" %>
+    <span class='error'><%= field_flash_messages(flash[:errors], 'category') %></span>
+  </div>
+
+  <div class="form-group col-md-6 <%= flash[:errors].present? ? 'error' : '' %>">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control" %>
+    <span class='error'><%= field_flash_messages(flash[:errors], 'description') %></span>
+  </div>
+
+  <div class="actions col-md-6">
+    <%= f.submit "Submit", class: "btn btn-sm btn-primary" %>
+  </div>
+
+<% end %>
+
